@@ -4,4 +4,4 @@
 
 ## National College of Ireland
 
-### NodeJS, Express, SQL, Javascript, Jquery, Pug, HTML5, CSS3
+### NodeJS, Express, SQL, Javascript, JQuery, Pug, HTML5, CSS3
