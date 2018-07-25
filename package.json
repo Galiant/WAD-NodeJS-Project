@@ -1,0 +1,14 @@
+{
+  "name": "myapp",
+  "version": "1.0.0",
+  "description": "NodeJS App for WAD Project at NCI",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Antonijo Galic",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
