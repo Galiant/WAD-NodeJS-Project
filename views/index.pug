@@ -1,17 +1,5 @@
-doctype html
-html
-  head
-    title My App
-    link(rel='stylesheet', href='app.css', type='text/css')
-  body
-    .header
-      .imhold
-        img#theLogo.logoIm(src='/logo.png', alt='logo')
-      .navhold
-        .topnav
-          a(href='/') Home
-          a(href='/products') Products
-          a(href='#') Add New Product
+extends layout
+block content
     .row
       .holder
         .large
@@ -23,5 +11,3 @@ html
         .normal2
           h1 Cycling
           h2 Accessories
-    .footer
-      p Node App built with ♡ from Antonijo Galic
