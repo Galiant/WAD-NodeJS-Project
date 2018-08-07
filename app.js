@@ -5,6 +5,9 @@ const VIEWS = path.join(__dirname, 'views');
 
 app.set('view engine', 'pug'); // allow the application to use jade templating system
 
+var bodyParser = require("body-parser");  // allow application to manipulate data in application (create, delete, update)
+app.use(bodyParser.urlencoded({extended: true}));
+
 var mysql = require('mysql'); // allow access to SQL
 
 app.use(express.static("scripts")); // allow the application to access the scripts folder contents to use in the application
@@ -83,6 +86,44 @@ app.get('/item/:id', function(req, res){
     res.render('item', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
   });
   console.log("Now you are on the item page!");
+});
+
+// Function to render the create page
+app.get('/create', function(req, res){
+  res.render('create', {root: VIEWS});
+  console.log("Now you are ready to create product!");
+});
+
+// Function to add data to database based on button press
+app.post('/create', function(req, res){
+  var name = req.body.name;
+  let sql = 'INSERT INTO products (Name, Brand, Category, Image, Price) VALUES ("'+name+'", "'+req.body.brand+'", "'+req.body.category+'", "'+req.body.image+'", '+req.body.price+')';
+  let query = db.query(sql, (err, res) => {
+    if(err) throw err;
+    console.log(res);
+    console.log("The name of the product is " + name);
+  });
+  res.render('index', {root: VIEWS});
+});
+
+// Function to edit database data based on button press and form
+app.get('/edit/:id', function(req, res) {
+  let sql = 'SELECT * FROM products WHERE Id = "'+req.params.id+'";'; 
+  let query = db.query(sql, (err, res1) =>{
+    if(err)
+    throw(err);
+    res.render('edit', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
+  });
+  console.log("Now you are ready to edit this product!");
+});
+
+app.post('/edit/:id', function(req, res) {
+  let sql = 'UPDATE products SET Name = "'+req.body.newname+'", Brand = "'+req.body.newbrand+'", Category = "'+req.body.newcategory+'", Image = "'+req.body.newimage+'", Price = '+req.body.newprice+' WHERE Id = "'+req.params.id+'"';
+  let query = db.query(sql, (err, res) => {
+    if(err) throw(err);
+    console.log(res);
+  });
+  res.redirect("/item/" + req.params.id);
 });
 
 // We need to set the requirements for tech application to run
