@@ -2,6 +2,7 @@ var express = require("express"); // call express to be used by the application
 var app = express();
 const path = require('path');
 const VIEWS = path.join(__dirname, 'views');
+var fs = require('fs'); //file system
 
 app.set('view engine', 'pug'); // allow the application to use jade templating system
 
@@ -12,9 +13,11 @@ var mysql = require('mysql'); // allow access to SQL
 
 app.use(express.static("scripts")); // allow the application to access the scripts folder contents to use in the application
 app.use(express.static("images"));  // allow the application to access the images folder contents to use in the application
+app.use(express.static("model")); // allow the application to access the models folder contents to use in the application
+
+var reviews = require("./model/reviews.json"); // allow the app to access the reviews.json file
 
 // Connect application with SQL database
-
 const db = mysql.createConnection({
   host: 'den1.mysql1.gear.host',
   user: 'babyworld',
@@ -117,6 +120,7 @@ app.get('/edit/:id', function(req, res) {
   console.log("Now you are ready to edit this product!");
 });
 
+// Function to update database data based on button press and form
 app.post('/edit/:id', function(req, res) {
   let sql = 'UPDATE products SET Name = "'+req.body.newname+'", Brand = "'+req.body.newbrand+'", Category = "'+req.body.newcategory+'", Image = "'+req.body.newimage+'", Price = '+req.body.newprice+' WHERE Id = "'+req.params.id+'"';
   let query = db.query(sql, (err, res) => {
@@ -124,6 +128,17 @@ app.post('/edit/:id', function(req, res) {
     console.log(res);
   });
   res.redirect("/item/" + req.params.id);
+});
+
+// Function to delete database data based on button press
+app.get('/delete/:id', function(req, res) {
+  let sql = 'DELETE FROM products WHERE Id = "'+req.params.id+'";'; 
+  let query = db.query(sql, (err, res1) =>{
+    if(err)
+    throw(err);
+    res.redirect('/products'); // use the render command so that the response object renders a HHTML page
+  });
+  console.log("You delete this product.......");
 });
 
 // We need to set the requirements for tech application to run
