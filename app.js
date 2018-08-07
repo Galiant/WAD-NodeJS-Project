@@ -141,6 +141,61 @@ app.get('/delete/:id', function(req, res) {
   console.log("You delete this product.......");
 });
 
+// ******* From here is JSON data manipulation ******
+app.get('/reviews', function(req, res) {
+  res.render('reviews', {reviews:reviews}
+  );
+  console.log("Reviews are on.......");
+});
+
+// Function to render JSON page
+app.get('/add', function(req, res) {
+  res.render('add', {root: VIEWS});
+  console.log("Now you are leaving feedback!");
+});
+
+// Post request to add JSON review
+app.post('/add', function(req, res) {
+  var count = Object.keys(reviews).length;  // Tells us how many products we have its not needed but is nice to show how we can do this
+  console.log(count);
+  
+  // This will look for the current largest id in the reviews JSON file this is only needed if you want the reviews to have an auto ID which is a good idea 
+  function getMax(reviews, id) {
+    var max;
+    for (var i=0; i<reviews.length; i++) {
+      if (!max || parseInt(reviews[i][id]) > parseInt(max[id]))
+        max = reviews[i];
+    }
+    return max;
+  }
+  
+  var maxPpg = getMax(reviews, "id"); // This calls the function above and passes the result as a variable called maxPpg.
+  var newId = maxPpg.id + 1;  // this creates a new variable called newID which is the max Id + 1
+  console.log(newId); // We console log the new id for show reasons only
+  
+  // Create a new product based on what we have in our form on the add page 
+  var review = {
+    name: req.body.name, // name called from the add.jade page textbox
+    id: newId, // this is the variable created above
+    content: req.body.content, // content called from the add.jade page textbox
+  };
+  console.log(review); // Console log the new product 
+  var json  = JSON.stringify(reviews); // Convert from object to string
+  
+  // The following function reads the json file then pushes the data from the variable above to the reviews JSON file. 
+  fs.readFile('./model/reviews.json', 'utf8', function readFileCallback(err, data) {
+    if (err) {
+      throw(err);
+   } else {
+    reviews.push(review); // add the information from the above variable
+    json = JSON.stringify(reviews, null , 4); // converted back to JSON the 4 spaces the json file out so when we look at it it is easily read. So it indents it. 
+    fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
+  }});
+  res.redirect("/reviews");
+});
+
+// ******* End JSON ********
+
 // We need to set the requirements for tech application to run
 app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
   console.log("App is running ........ Yesssssssssss!");

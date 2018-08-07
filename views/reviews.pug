@@ -3,4 +3,8 @@ block content
   .row
     .holder
       h1 Hi I am the reviews page!
-        =JSON.stringify(reviews)
+        .grid-container
+            each review in reviews
+                .item
+                    h1.itemtitle #{review.name}
+                    p.itemp #{review.content}
