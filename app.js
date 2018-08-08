@@ -196,6 +196,39 @@ app.post('/add', function(req, res) {
 
 // ******* End JSON ********
 
+// Page to render edit review
+// This function filters the reviews by looking for any review which has an Id the same as the one passed in the url
+app.get('/editreview/:id', function(req, res) {
+  function chooseReview(indOne) {
+    return indOne.id === parseInt(req.params.id);
+  }
+  console.log("Id of this review is " + req.params.id);
+  // declare a variable called indOne which is a filter of reviews based on the filtering function above
+  var indOne = reviews.filter(chooseReview);
+  // pass the filtered JSON data to the page as indOne
+  res.render('editreview', {indOne:indOne});
+  console.log("Edit review page shown");
+});
+
+// Create post request to edit the individual review
+app.post('/editreview/:id', function(req, res) {
+  var json = JSON.stringify(reviews);
+  var keyToFind = parseInt(req.params.id); // Id passed through the url  
+  var data = reviews; // declare data as the reviews json file  
+  var index = data.map(function(review){review.id}).keyToFind; // use the parameter passed in the url as a pointer to find the correct review to edit
+  var x = req.body.name;
+  var y = req.body.content;  
+  var z = parseInt(req.params.id);
+  
+  reviews.splice(index, 1, {name: x, content: y, id: z});
+  
+  json = JSON.stringify(reviews, null, 4);
+  
+  fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
+  
+  res.redirect("/reviews");
+});
+
 // We need to set the requirements for tech application to run
 app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
   console.log("App is running ........ Yesssssssssss!");
