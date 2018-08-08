@@ -92,6 +92,7 @@ app.get('/products', function(req, res){
     res.render('products', {root: VIEWS, res1}); // use the render command so that response object renders a HTML page
   });
   console.log("Now you are on products page!");
+  console.log("Status of this user is " + req.session.user); // Log out the session value
 });
 
 // Function to render the item page
@@ -284,6 +285,34 @@ app.post('/register', function(req, res) {
   res.redirect('/');
 });
 
+// Render login page
+app.get('/login', function(req, res) {
+  res.render('login', {root: VIEWS});
+});
+
+app.post('/login', function(req, res) {
+  var whichOne = req.body.name; // What does user type in the name text box
+  var whichPass = req.body.password; // What does user type in the password text box
+  
+  let sql2 = 'SELECT name, password FROM users WHERE name = "'+req.body.name+'"';
+  let query = db.query(sql2, (err, res2) => {
+    if(err) throw(err);
+    console.log(res2);
+    
+    var passx = res2[0].password;
+    var passn = res2[0].name;
+    
+    req.session.user = "Active";
+    
+    
+    if(passx == whichPass) {
+    res.redirect('/products');
+    console.log("You logged in as Password " + passx + " and Username " + passn);
+    } else {
+      
+    }
+  });
+});
 
 // We need to set the requirements for tech application to run
 app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
