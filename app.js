@@ -223,9 +223,21 @@ app.post('/editreview/:id', function(req, res) {
   reviews.splice(index, 1, {name: x, content: y, id: z});
   
   json = JSON.stringify(reviews, null, 4);
-  
   fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
+  res.redirect("/reviews");
+});
+
+// Route to delete review
+app.get('/deletereview/:id', function(req, res) {
+  var json = JSON.stringify(reviews);
+  var keyToFind = parseInt(req.params.id); // Id passed through the url
+  var data = reviews;
+  var index = data.map(function(d) {d['id'];}).indexOf(keyToFind);
   
+  reviews.splice(index, 1);
+  
+  json = JSON.stringify(reviews, null, 4);
+  fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
   res.redirect("/reviews");
 });
 
