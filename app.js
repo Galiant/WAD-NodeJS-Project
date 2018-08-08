@@ -126,12 +126,17 @@ app.post('/create', function(req, res){
 
 // Function to edit database data based on button press and form
 app.get('/edit/:id', function(req, res) {
+  if(req.session.user == "Active") {
   let sql = 'SELECT * FROM products WHERE Id = "'+req.params.id+'";'; 
   let query = db.query(sql, (err, res1) =>{
     if(err)
     throw(err);
     res.render('edit', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
   });
+  
+  } else {
+    res.render('login', {root: VIEWS});
+  }
   console.log("Now you are ready to edit this product!");
 });
 
