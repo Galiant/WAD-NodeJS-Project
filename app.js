@@ -194,8 +194,6 @@ app.post('/add', function(req, res) {
   res.redirect("/reviews");
 });
 
-// ******* End JSON ********
-
 // Page to render edit review
 // This function filters the reviews by looking for any review which has an Id the same as the one passed in the url
 app.get('/editreview/:id', function(req, res) {
@@ -239,6 +237,21 @@ app.get('/deletereview/:id', function(req, res) {
   json = JSON.stringify(reviews, null, 4);
   fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
   res.redirect("/reviews");
+});
+
+// ******* End JSON ********
+
+// ***** Search function *******
+app.post('/search', function(req, res) {
+  let sql = 'SELECT * FROM products WHERE name LIKE "%'+req.body.search+'%";';
+  let query = db.query(sql, (err, res1) => {
+    if(err)
+    throw (err)
+    // res.redirect("/error")
+    
+    res.render('products', {root: VIEWS, res1});
+    console.log("Successful search......");
+  });
 });
 
 // We need to set the requirements for tech application to run
