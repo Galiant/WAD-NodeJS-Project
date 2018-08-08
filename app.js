@@ -6,6 +6,8 @@ var fs = require('fs'); //file system
 
 app.set('view engine', 'pug'); // allow the application to use jade templating system
 
+var session = require('express-session');
+
 var bodyParser = require("body-parser");  // allow application to manipulate data in application (create, delete, update)
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -16,6 +18,8 @@ app.use(express.static("images"));  // allow the application to access the image
 app.use(express.static("model")); // allow the application to access the models folder contents to use in the application
 
 var reviews = require("./model/reviews.json"); // allow the app to access the reviews.json file
+
+app.use(session({ secret: "topsecret" })); // Required to make the session accessable throughout the application
 
 // Connect application with SQL database
 const db = mysql.createConnection({
@@ -44,6 +48,15 @@ app.get('/createtable', function(req, res) {
   res.send("Table Created.....");
 });
 
+app.get('/createusertable', function(req, res) {
+  let sql = 'CREATE TABLE users (Id int NOT NULL AUTO_INCREMENT PRIMARY KEY, Name varchar(255), Email varchar(255), Password varchar(255));';
+  let query = db.query(sql, (err, res) => {
+    if(err) throw err;
+    console.log(res);
+  });
+  res.send("User Created.....");
+});
+
 // SQL Insert Data Example
 app.get('/insert', function(req, res) {
   let sql = 'INSERT INTO products (Name, Brand, Category, Image, Price) VALUES ("Venti Travel System - Navy", "Baby Elegance", "Travel System", "venti.jpg", 449.99)';
@@ -68,6 +81,7 @@ app.get('/queryme', function(req, res) {
 app.get('/', function(req, res){
   res.render('index', {root: VIEWS});
   console.log("Now you are at home page!");
+  console.log("Status of this user is " + req.session.user); // Log out the session value
 });
 
 // Function to render the products page
@@ -253,6 +267,23 @@ app.post('/search', function(req, res) {
     console.log("Successful search......");
   });
 });
+
+// ++++++++++++ Login/Logout and registration functionality ++++++++++++++++
+// Render register page
+app.get('/register', function(req, res) {
+  res.render('register', {root: VIEWS});
+});
+
+// Stick user into database
+app.post('/register', function(req, res) {
+  db.query('INSERT INTO users (Name, Email, Password) VALUES ("'+req.body.name+'", "'+req.body.email+'", "'+req.body.password+'")');
+  
+  req.session.user = "Active";
+  // req.session.name = req.body.name;
+  
+  res.redirect('/');
+});
+
 
 // We need to set the requirements for tech application to run
 app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
