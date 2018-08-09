@@ -7,11 +7,10 @@ var fs = require('fs'); //file system
 app.set('view engine', 'pug'); // allow the application to use jade templating system
 
 var session = require('express-session');
+var mysql = require('mysql'); // allow access to SQL
 
 var bodyParser = require("body-parser");  // allow application to manipulate data in application (create, delete, update)
 app.use(bodyParser.urlencoded({extended: true}));
-
-var mysql = require('mysql'); // allow access to SQL
 
 app.use(express.static("scripts")); // allow the application to access the scripts folder contents to use in the application
 app.use(express.static("images"));  // allow the application to access the images folder contents to use in the application
@@ -97,7 +96,7 @@ app.get('/products', function(req, res){
 
 // Function to render the item page
 app.get('/item/:id', function(req, res){
-  let sql = 'SELECT * FROM products WHERE Id = "'+req.params.id+'";' 
+  let sql = 'SELECT * FROM products WHERE Id = '+req.params.id+'';
   let query = db.query(sql, (err, res1) =>{
     if(err)
     throw(err);
@@ -127,11 +126,11 @@ app.post('/create', function(req, res){
 // Function to edit database data based on button press and form
 app.get('/edit/:id', function(req, res) {
   if(req.session.user == "Active") {
-  let sql = 'SELECT * FROM products WHERE Id = "'+req.params.id+'";'; 
-  let query = db.query(sql, (err, res1) =>{
+  let sql = 'SELECT * FROM products WHERE Id = '+req.params.id+''; 
+  let query = db.query(sql, (err, res1) => {
     if(err)
     throw(err);
-    res.render('edit', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
+    res.render('edit', {root: VIEWS, res1}); // use the render command so that the response object renders a HTML page
   });
   
   } else {
@@ -142,9 +141,11 @@ app.get('/edit/:id', function(req, res) {
 
 // Function to update database data based on button press and form
 app.post('/edit/:id', function(req, res) {
-  let sql = 'UPDATE products SET Name = "'+req.body.newname+'", Brand = "'+req.body.newbrand+'", Category = "'+req.body.newcategory+'", Image = "'+req.body.newimage+'", Price = '+req.body.newprice+' WHERE Id = "'+req.params.id+'"';
+  let sql = 'UPDATE products SET Name = "'+req.body.newname+'", Brand = "'+req.body.newbrand+'", Category = "'+req.body.newcategory+'", Image = "'+req.body.newimage+'", Price = '+req.body.newprice+' WHERE Id = '+req.params.id+'';
   let query = db.query(sql, (err, res) => {
-    if(err) throw(err);
+    if(err)
+    // throw(err);
+    console.log("Oops... Something went wrong....");
     console.log(res);
   });
   res.redirect("/item/" + req.params.id);
@@ -309,14 +310,18 @@ app.post('/login', function(req, res) {
     
     req.session.user = "Active";
     
-    
     if(passx == whichPass) {
     res.redirect('/products');
     console.log("You logged in as Password " + passx + " and Username " + passn);
-    } else {
-      
     }
   });
+});
+
+// Log out route
+app.get('/logout', function(req, res) {
+  res.render('index', {root: VIEWS});
+  req.session.destroy(session.user);
+  console.log("You are Log-out from application.....")
 });
 
 // We need to set the requirements for tech application to run
