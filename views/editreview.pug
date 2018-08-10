@@ -7,7 +7,7 @@ block content
       each review in indOne
         fieldset
           label(for="name") Your name:
-          input(name="name", type="text", value=review.name)
+          input(name="name", type="text", value=review.name required)
           label(for="content") Your review:
-          input(name="content", type="text", value=review.content)
+          input(name="content", type="text", value=review.content required)
           button.button(type="submit") Edit this review

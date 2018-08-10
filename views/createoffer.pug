@@ -1,8 +1,8 @@
 extends layout
 block content
     .row
-    h1 Welcome! Lets Add A Product
-        h1.itemtitle Add the product form
+    h1 Welcome! Lets Create A Special Offer
+        h1.itemtitle Add the special offer form
         form(method="post")
             fieldset
                 label(for="name") Product Name:
@@ -15,4 +15,6 @@ block content
                 input(name="image", type="text", placeholder="Please add the product image")
                 label(for="price") Product Price:
                 input(name="price", type="text", placeholder="Please set the price for product")
+                label(for="offer") Special Offer Price:
+                input(name="offer", type="text", placeholder="Please set the special offer price for product")
                 button.button(type="submit") Create product

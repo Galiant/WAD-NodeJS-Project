@@ -1,0 +1,13 @@
+extends layout
+block content
+  .row
+      h1 Hi I am the product page!
+      .flex-container
+        each row in res1
+          .card
+            img.pimage(src='/' + row.Image, alt=row.Image)
+            h2 #{row.Name}
+            p #{row.Brand}
+            p Category: #{row.Category}
+            p.offer &euro; #{row.Price}
+            p.product-price &euro; #{row.Offer}

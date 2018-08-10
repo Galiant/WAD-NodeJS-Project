@@ -1,8 +1,8 @@
 extends layout
 block content
     .row
-    h1 Welcome! Lets Edit This Product
-        h1.itemtitle Edit the product form
+    h1 Welcome! Lets Edit This Product On Special Offer
+        h1.itemtitle Edit the product on special offer form
         form(method="post")
             each row in res1
                 fieldset
@@ -16,4 +16,6 @@ block content
                     input(name="newimage", type="text", value=row.Image)
                     label(for="newprice") Product Price:
                     input(name="newprice", type="text", value=row.Price)
+                    label(for="newoffer") Special Offer Price:
+                    input(name="newoffer", type="text", value=row.Offer)
                     button.button(type="submit") Edit product

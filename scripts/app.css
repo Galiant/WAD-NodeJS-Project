@@ -230,3 +230,6 @@ input[type=submit] {
       width: 95%; }
       .reviews-container .reviews-list .individual-review p {
         margin: 0 0 10px; }
+
+.offer {
+  text-decoration: line-through; }

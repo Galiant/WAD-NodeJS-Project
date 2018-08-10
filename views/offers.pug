@@ -1,0 +1,16 @@
+extends layout
+block content
+  .row
+      h1 Special Offer
+      .flex-container
+        each row in res1
+          .card
+              img.product-image(src='/' + row.Image, alt=row.Image)
+              h2 #{row.Name}
+              p #{row.Brand}
+              p Category: #{row.Category}
+              p.offer &euro;#{row.Price}
+              p.product-price &euro;#{row.Offer}
+              a.button(href='/offeritem/' + row.Id) Show
+              a.button(href='/editoffer/' + row.Id) Edit
+              a.button(href='/deleteoffer/' + row.Id) Delete

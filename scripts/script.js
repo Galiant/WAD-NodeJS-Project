@@ -1,3 +1,4 @@
+// Menu on slide
 $(document).ready(function(){
   $('.menu-tab').click(function(){
     $('.menu-hide').toggleClass('show');
@@ -8,3 +9,8 @@ $(document).ready(function(){
     $('.menu-tab').removeClass('active');
   });
 });
+
+// User role - Show html based on user.role
+if (req.session.user == "Active") {
+  $(".user-role").show();
+}
