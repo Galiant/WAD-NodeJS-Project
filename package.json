@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass:compile": "node-sass --include-path sass scripts/style.scss scripts/app.css"
+    "build-css": "node-sass --include-path scss scripts/style.scss scripts/app.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "author": "Antonijo Galic",
   "license": "ISC",
@@ -16,6 +17,7 @@
     "pug": "^2.0.3"
   },
   "devDependencies": {
-    "node-sass": "^4.9.3"
+    "node-sass": "^4.9.3",
+    "nodemon": "^1.18.3"
   }
 }

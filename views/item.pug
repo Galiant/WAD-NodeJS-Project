@@ -1,13 +1,12 @@
 extends layout
 block content
   .row
-    .holder
-      h1 Hi I am the products page!
-        .grid-container
-          each row in res1
-            .item
-              h1.itemtitle #{row.Name}
-              p.itemp #{row.Brand}
-              img.pimage(src='/' + row.Image, alt=row.Image)
-              p.itemp Category: #{row.Category}
-              p.itemp &euro; #{row.Price}
+      h1 Hi I am the product page!
+      .flex-container
+        each row in res1
+          .card
+            img.pimage(src='/' + row.Image, alt=row.Image)
+            h2 #{row.Name}
+            p #{row.Brand}
+            p Category: #{row.Category}
+            p.product-price &euro; #{row.Price}
