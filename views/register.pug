@@ -6,9 +6,9 @@ block content
     form(method="post")
         fieldset
           label(for="name") User name:
-          input(name="name", type="text", placeholder="Your user name")
+          input(name="name", type="text", placeholder="Your user name" required)
           label(for="password") Password:
-          input(name="password", type="password", placeholder="Your password")
+          input(name="password", type="password", placeholder="Your password" required)
           label(for="email") Email Address:
-          input(name="email", type="text", placeholder="Your email address")
+          input(name="email", type="text", placeholder="Your email address" required)
           button.button(type="submit") Create account

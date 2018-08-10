@@ -64,7 +64,12 @@ input[type=submit] {
   color: coral;
   font-weight: 800;
   border-bottom: 2px solid #f1f1f1;
-  padding: 3rem; }
+  padding: 3rem;
+  background-image: url("header.jpg");
+  background-size: cover;
+  background-position: center;
+  background-position-y: 33%;
+  height: 200px; }
 
 .menu-tab {
   width: 90px;
@@ -138,6 +143,10 @@ input[type=submit] {
 
 .search-button {
   margin-left: 20px; }
+
+.category-title {
+  text-align: center;
+  font-size: 6rem; }
 
 /* Footer */
 .footer {

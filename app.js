@@ -321,7 +321,7 @@ app.post('/login', function(req, res) {
 app.get('/logout', function(req, res) {
   res.render('index', {root: VIEWS});
   req.session.destroy(session.user);
-  console.log("You are Log-out from application.....")
+  console.log("You are Log-out from application.....");
 });
 
 // We need to set the requirements for tech application to run

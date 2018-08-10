@@ -82,6 +82,11 @@ input[type=submit] {
     font-weight: 800;
     border-bottom: 2px solid $white;
     padding: 3rem;
+    background-image: url('header.jpg');
+    background-size: cover;
+    background-position: center;
+    background-position-y: 33%; 
+    height: 200px;
 }
 
 .menu-tab {
@@ -183,6 +188,10 @@ input[type=submit] {
     margin-left: 20px;
 }
 
+.category-title {
+    text-align: center;
+    font-size: 6rem;
+}
 /* Footer */
 
 .footer {
@@ -288,4 +297,3 @@ input[type=submit] {
         }
     }
 }
-
