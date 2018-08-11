@@ -15,7 +15,8 @@ body {
 
 h1 {
   text-align: center;
-  margin: 2rem 0; }
+  margin: 2rem 0;
+  text-transform: uppercase; }
 
 .button {
   background-color: coral;
@@ -36,7 +37,7 @@ h1 {
   display: inline-block;
   width: 100%; }
 
-input[type=text], input[type=password], select {
+input[type=text], input[type=password], select, textarea {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -159,7 +160,7 @@ input[type=submit] {
     color: #2d2d2d;
     font-weight: 600; }
 
-/* Products */
+/* Card - Index, Product(s) */
 .flex-container {
   background-color: #f3f3f3;
   list-style: outside none none;
@@ -237,5 +238,96 @@ input[type=submit] {
       .reviews-container .reviews-list .individual-review p {
         margin: 0 0 10px; }
 
+/* Offer */
 .offer {
   text-decoration: line-through; }
+
+/* Contact */
+.contact-section {
+  padding: 30px 0 50px 0;
+  text-align: center; }
+  .contact-section h2 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase; }
+  .contact-section form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 880px;
+    height: 450px;
+    background: #f3f3f3;
+    text-align: left;
+    padding: 10px 0; }
+    .contact-section form .subject,
+    .contact-section form .content {
+      width: 80%;
+      margin: 0 auto; }
+      .contact-section form .subject label,
+      .contact-section form .content label {
+        display: block;
+        padding: 0;
+        margin: 0; }
+    .contact-section form .id {
+      display: flex;
+      justify-content: space-between;
+      height: 80px;
+      width: 80%;
+      margin: 0 auto; }
+      .contact-section form .id .name,
+      .contact-section form .id .email {
+        display: inline-block;
+        width: 45%; }
+        .contact-section form .id .name label,
+        .contact-section form .id .email label {
+          display: block;
+          padding: 0;
+          margin: 0; }
+        .contact-section form .id .name input[name="email"],
+        .contact-section form .id .name input[name="name"],
+        .contact-section form .id .email input[name="email"],
+        .contact-section form .id .email input[name="name"] {
+          width: 100%;
+          height: 40px; }
+    .contact-section form .subject {
+      height: 62px; }
+      .contact-section form .subject input[name="subject"] {
+        width: 100%;
+        height: 40px; }
+    .contact-section form .content {
+      padding-top: 1rem; }
+      .contact-section form .content textarea {
+        width: 100%;
+        resize: none; }
+
+.form-section {
+  padding: 30px 0 50px 0;
+  text-align: center; }
+  .form-section h2 {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    text-transform: uppercase; }
+  .form-section form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 880px;
+    height: 600px;
+    background: #f3f3f3;
+    text-align: left;
+    padding: 10px 0; }
+    .form-section form .subject {
+      width: 80%;
+      margin: 0 auto;
+      height: 62px; }
+      .form-section form .subject label {
+        display: block;
+        padding: 0;
+        margin: 0; }
+      .form-section form .subject input[name="subject"] {
+        width: 100%;
+        height: 40px; }

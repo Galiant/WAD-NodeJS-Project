@@ -422,8 +422,7 @@ app.get('/deleteoffer/:id', function(req, res) {
 // ************ END SPECIAL OFFER **************
 
 // ************ Category Pages **************
-// filtered product page test categories
-  
+// Function to render category page
 app.get('/category/:category', function(req, res){
   let sql = 'SELECT * FROM products WHERE Category = "'+req.params.category+'"';
   let query = db.query(sql, (err, res1) =>{
@@ -432,6 +431,11 @@ app.get('/category/:category', function(req, res){
     res.render('category', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
   });
   console.log("Now you are on the category page!");
+});
+
+// Function to render contact
+app.get('/contact', function(req, res){
+  res.render('contact', {root: VIEWS});
 });
 
 
