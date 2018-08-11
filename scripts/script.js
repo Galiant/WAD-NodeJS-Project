@@ -9,8 +9,3 @@ $(document).ready(function(){
     $('.menu-tab').removeClass('active');
   });
 });
-
-// User role - Show html based on user.role
-if (req.session.user == "Active") {
-  $(".user-role").show();
-}

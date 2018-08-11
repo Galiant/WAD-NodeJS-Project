@@ -188,10 +188,6 @@ input[type=submit] {
     margin-left: 20px;
 }
 
-.category-title {
-    text-align: center;
-    font-size: 6rem;
-}
 /* Footer */
 
 .footer {
@@ -233,6 +229,16 @@ input[type=submit] {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        
+        &:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        
+        a {
+            text-decoration: none;
+        }
         
         .product-image {
             background-color: #ccc;
@@ -251,6 +257,14 @@ input[type=submit] {
             text-transform: uppercase;
         }
         
+        .category-title {
+            text-align: center;
+    
+            &:hover {
+                color: $red;
+            }
+        }
+        
         p {
             margin: 0.5rem 2rem 0;
             font-size: 1rem;
@@ -262,7 +276,6 @@ input[type=submit] {
             padding-bottom: 2rem;
         }
     }
-    
 }
 
 /* Reviews */

@@ -344,7 +344,7 @@ app.get('/insertoffer', function(req, res) {
   res.send("Offer Created.....");
 });
 
-// Function to render the products page
+// Function to render the offers page
 app.get('/offers', function(req, res){
   let sql = 'SELECT * FROM offers;';
   let query = db.query(sql, (err, res1) => {
@@ -354,7 +354,7 @@ app.get('/offers', function(req, res){
   console.log("Now you are on special offer page!");
 });
 
-// Function to render the item page
+// Function to render the offeritem page
 app.get('/offeritem/:id', function(req, res){
   let sql = 'SELECT * FROM offers WHERE Id = '+req.params.id+'';
   let query = db.query(sql, (err, res1) =>{
@@ -365,11 +365,12 @@ app.get('/offeritem/:id', function(req, res){
   console.log("Now you are on item on special offer page!");
 });
 
-// Function to render the create page
+// Function to render the createoffer page
 app.get('/createoffer', function(req, res){
   res.render('createoffer', {root: VIEWS});
   console.log("Now you are ready to create special offer!");
 });
+
 
 // Function to add data to database based on button press
 app.post('/createoffer', function(req, res){
@@ -419,6 +420,20 @@ app.get('/deleteoffer/:id', function(req, res) {
 });
 
 // ************ END SPECIAL OFFER **************
+
+// ************ Category Pages **************
+// filtered product page test categories
+  
+app.get('/category/:category', function(req, res){
+  let sql = 'SELECT * FROM products WHERE Category = "'+req.params.category+'"';
+  let query = db.query(sql, (err, res1) =>{
+    if(err)
+    throw(err);
+    res.render('category', {root: VIEWS, res1}); // use the render command so that the response object renders a HHTML page
+  });
+  console.log("Now you are on the category page!");
+});
+
 
 // We need to set the requirements for tech application to run
 app.listen(process.env.PORT || 8080, process.env.IP || "0.0.0.0", function() {
