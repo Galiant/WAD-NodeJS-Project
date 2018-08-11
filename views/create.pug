@@ -1,18 +1,22 @@
 extends layout
 block content
-    .row
-    h1 Welcome! Lets Add A Product
-        h1.itemtitle Add the product form
-        form(method="post")
-            fieldset
+    .form-section
+        h2 Welcome! Lets Add A Product
+        form.form(method="post")
+            .input-box
                 label(for="name") Product Name:
                 input(name="name", type="text", placeholder="Please name the product")
+            .input-box
                 label(for="brand") Product Brand:
                 input(name="brand", type="text", placeholder="Please name the product brand")
+            .input-box
                 label(for="category") Product Category:
                 input(name="category", type="text", placeholder="Please choose the category for product")
+            .input-box
                 label(for="image") Product Image:
                 input(name="image", type="text", placeholder="Please add the product image")
+            .input-box
                 label(for="price") Product Price:
                 input(name="price", type="text", placeholder="Please set the price for product")
-                button.button(type="submit") Create product
+            .input-box
+            button.button(type="submit") Create product

@@ -1,12 +1,12 @@
 extends layout
 block content
-  .row
-  h1 Hi, Please Log in to your account
-  .formHold
-    form(method="post")
-        fieldset
+  .form-section
+    h2 Hi, Please Log in to your account
+    form.form(method="post")
+        .input-box
           label(for="name") User name:
           input(name="name", type="text", placeholder="Your user name" required)
+        .input-box
           label(for="password") Password:
           input(name="password", type="password", placeholder="Your password" required)
-          button.button(type="submit") Log in
+        button.button(type="submit") Log in

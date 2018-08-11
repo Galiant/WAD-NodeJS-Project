@@ -1,21 +1,25 @@
 extends layout
 block content
-    .row
-    h1 Welcome! Lets Edit This Product On Special Offer
-        h1.itemtitle Edit the product on special offer form
-        form(method="post")
+    .form-section
+        h2 Welcome! Lets Create A Special Offer
+        form.form(method="post")
             each row in res1
-                fieldset
+                .input-box
                     label(for="newname") Product Name:
                     input(name="newname", type="text", value=row.Name)
+                .input-box
                     label(for="newbrand") Product Brand:
                     input(name="newbrand", type="text", value=row.Brand)
+                .input-box
                     label(for="newcategory") Product Category:
                     input(name="newcategory", type="text", value=row.Category)
+                .input-box
                     label(for="newimage") Product Image:
                     input(name="newimage", type="text", value=row.Image)
+                .input-box
                     label(for="newprice") Product Price:
                     input(name="newprice", type="text", value=row.Price)
+                .input-box
                     label(for="newoffer") Special Offer Price:
                     input(name="newoffer", type="text", value=row.Offer)
-                    button.button(type="submit") Edit product
+                button.button(type="submit") Edit product

@@ -218,9 +218,8 @@ input[type=submit] {
 .reviews-container {
   padding: 30px 40px 80px; }
   .reviews-container h1 {
-    color: coral;
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 2rem;
+    font-weight: 400;
     padding-bottom: 1pt; }
   .reviews-container .reviews-list {
     margin: 0;
@@ -320,14 +319,21 @@ input[type=submit] {
     background: #f3f3f3;
     text-align: left;
     padding: 10px 0; }
-    .form-section form .subject {
+    .form-section form .input-box {
       width: 80%;
       margin: 0 auto;
       height: 62px; }
-      .form-section form .subject label {
+      .form-section form .input-box label {
         display: block;
         padding: 0;
         margin: 0; }
-      .form-section form .subject input[name="subject"] {
+      .form-section form .input-box input[name="subject"] {
         width: 100%;
         height: 40px; }
+    .form-section form .content {
+      padding-top: 1rem;
+      width: 80%;
+      margin: 0 auto; }
+      .form-section form .content textarea {
+        width: 100%;
+        resize: none; }

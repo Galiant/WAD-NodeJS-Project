@@ -1,13 +1,12 @@
 extends layout
 block content
-    .row
-    h1 Leave a review
-    .formHold
-        h1.itemtitle Add the review form
-        form(method="post")
-            fieldset
+    .form-section
+        h2 Leave a review
+        form.form(method="post")
+            .input-box
                 label(for="name") Your Name:
                 input(name="name", type="text", placeholder="Your name" required)
+            .content
                 label(for="content") Write Review:
-                input(name="content", type="text", placeholder="Review" required)
-                button.button(type="submit") Leave review
+                textarea(name="content", cols='30', rows='10', placeholder="Review" required)
+            button.button(type="submit") Leave review

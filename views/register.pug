@@ -1,14 +1,15 @@
 extends layout
 block content
-  .row
-  h1 Hi, Please create an account
-  .formHold
-    form(method="post")
-        fieldset
+  .form-section
+    h2 Hi, Please create an account
+    form.form(method="post")
+        .input-box
           label(for="name") User name:
           input(name="name", type="text", placeholder="Your user name" required)
+        .input-box
           label(for="password") Password:
           input(name="password", type="password", placeholder="Your password" required)
+        .input-box
           label(for="email") Email Address:
           input(name="email", type="text", placeholder="Your email address" required)
-          button.button(type="submit") Create account
+        button.button(type="submit") Create account
