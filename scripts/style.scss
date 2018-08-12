@@ -541,3 +541,42 @@ input[type=submit] {
         }
 	}
 }
+
+/* 404 page*/
+
+.body-error {
+    background-color: $black;
+    display: flex;
+    color: coral;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    
+    .error {
+        padding-top: 10%;
+        text-align: center;
+        
+        h1 {
+            font-size: 12rem;
+            transform: skewY(-5deg);
+            transition: 0.4s ease-in-out all;
+            
+            &:hover {
+                text-shadow: 20px 20px 0 rgba($white, .4);
+            }
+        }
+        
+        p {
+            font-size: 2rem;
+            
+            a {
+                color: $white;
+                
+                &:hover {
+                    color: $red;
+                }
+            }
+        }
+    }
+}

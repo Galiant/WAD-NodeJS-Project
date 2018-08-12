@@ -121,8 +121,12 @@ app.get('/item/:id', function(req, res){
 
 // Function to render the create page
 app.get('/create', function(req, res){
+  if(req.session.user == "Active") {
   res.render('create', {root: VIEWS});
   console.log("Now you are ready to create product!");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 // Function to add data to database based on button press
@@ -146,9 +150,8 @@ app.get('/edit/:id', function(req, res) {
     throw(err);
     res.render('edit', {root: VIEWS, res1}); // use the render command so that the response object renders a HTML page
   });
-  
   } else {
-    res.render('login', {root: VIEWS});
+    res.render('404', {root: VIEWS});
   }
   console.log("Now you are ready to edit this product!");
 });
@@ -167,12 +170,17 @@ app.post('/edit/:id', function(req, res) {
 
 // Function to delete database data based on button press
 app.get('/delete/:id', function(req, res) {
+  if(req.session.user == "Active") {
   let sql = 'DELETE FROM products WHERE Id = "'+req.params.id+'";'; 
   let query = db.query(sql, (err, res1) =>{
     if(err)
     throw(err);
     res.redirect('/products'); // use the render command so that the response object renders a HHTML page
   });
+  
+  } else {
+    res.render('404', {root: VIEWS});
+  }
   console.log("You delete this product.......");
 });
 
@@ -185,7 +193,11 @@ app.get('/reviews', function(req, res) {
 
 // Function to render JSON page
 app.get('/add', function(req, res) {
+  if(req.session.user == "Active") {
   res.render('add', {root: VIEWS});
+  } else {
+    res.render('404', {root: VIEWS});
+  }
   console.log("Now you are leaving feedback!");
 });
 
@@ -239,8 +251,12 @@ app.get('/editreview/:id', function(req, res) {
   // declare a variable called indOne which is a filter of reviews based on the filtering function above
   var indOne = reviews.filter(chooseReview);
   // pass the filtered JSON data to the page as indOne
+  if(req.session.user == "Active") {
   res.render('editreview', {indOne:indOne});
   console.log("Edit review page shown");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 // Create post request to edit the individual review
@@ -262,6 +278,7 @@ app.post('/editreview/:id', function(req, res) {
 
 // Route to delete review
 app.get('/deletereview/:id', function(req, res) {
+  if(req.session.user == "Active") {
   var json = JSON.stringify(reviews);
   var keyToFind = parseInt(req.params.id); // Id passed through the url
   var data = reviews;
@@ -272,6 +289,9 @@ app.get('/deletereview/:id', function(req, res) {
   json = JSON.stringify(reviews, null, 4);
   fs.writeFile('./model/reviews.json', json, 'utf8'); // Write the file back
   res.redirect("/reviews");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 // ******* End JSON ********
@@ -372,8 +392,12 @@ app.get('/offeritem/:id', function(req, res){
 
 // Function to render the createoffer page
 app.get('/createoffer', function(req, res){
+  if(req.session.user == "Active") {
   res.render('createoffer', {root: VIEWS});
   console.log("Now you are ready to create special offer!");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 
@@ -391,14 +415,17 @@ app.post('/createoffer', function(req, res){
 
 // Function to edit database data based on button press and form
 app.get('/editoffer/:id', function(req, res) {
+  if(req.session.user == "Active") {
   let sql = 'SELECT * FROM offers WHERE Id = '+req.params.id+''; 
   let query = db.query(sql, (err, res1) => {
     if(err)
     throw(err);
     res.render('editoffer', {root: VIEWS, res1}); // use the render command so that the response object renders a HTML page
   });
-  
   console.log("Now you are ready to edit this product!");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 // Function to update database data based on button press and form
@@ -415,6 +442,7 @@ app.post('/editoffer/:id', function(req, res) {
 
 // Function to delete database data based on button press
 app.get('/deleteoffer/:id', function(req, res) {
+  if(req.session.user == "Active") {
   let sql = 'DELETE FROM offers WHERE Id = "'+req.params.id+'";'; 
   let query = db.query(sql, (err, res1) =>{
     if(err)
@@ -422,6 +450,9 @@ app.get('/deleteoffer/:id', function(req, res) {
     res.redirect('/offers'); // use the render command so that the response object renders a HHTML page
   });
   console.log("You delete this product.......");
+  } else {
+    res.render('404', {root: VIEWS});
+  }
 });
 
 // ************ END SPECIAL OFFER **************
@@ -441,6 +472,11 @@ app.get('/category/:category', function(req, res){
 // Function to render contact
 app.get('/contact', function(req, res){
   res.render('contact', {root: VIEWS});
+});
+
+// Function to render 404 page
+app.get('/404', function(req, res){
+  res.render('404', {root: VIEWS});
 });
 
 
