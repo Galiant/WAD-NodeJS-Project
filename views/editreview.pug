@@ -1,13 +1,13 @@
 extends layout
 block content
-  .form-section
-    h2 Welcome lets edit a review
-    form.form(method="post")
-      each review in indOne
-        .input-box
-          label(for="name") Your name:
-          input(name="name", type="text", value=review.name required)
-        .content
-          label(for="content") Your review:
-          textarea(name="content", cols='30', rows='10', value=review.content required)
-        button.button(type="submit") Edit this review
+    .form-section
+        h2 Welcome lets edit a review
+        form.form(method="post")
+              each review in indOne
+                  .input-box
+                    label(for="name") Your name:
+                    input(name="name", type="text", value=review.name required)
+                  .content
+                    label(for="content") Your review:
+                    input(name="content", type="text", value=review.content required)
+                  button.button(type="submit") Edit this review

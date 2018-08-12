@@ -2,14 +2,14 @@ extends layout
 block content
         .contact-section
             h2 Contact
-            form.form
+            form.form(action='https://formspree.io/your@email.com', method='POST')
                 .id
                     .name
                         label(for='name') Name:
                         input#name(type='text', name='name' required)
                     .email
                         label(for='email') Email:
-                        input#email(type='text', name='email' required)
+                        input#email(type='email', name='email' required)
                 .subject
                     label(for='subject') Subject:
                     input#subject(type='text', name='subject' required)

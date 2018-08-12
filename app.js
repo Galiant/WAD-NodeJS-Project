@@ -244,6 +244,7 @@ app.post('/add', function(req, res) {
 // Page to render edit review
 // This function filters the reviews by looking for any review which has an Id the same as the one passed in the url
 app.get('/editreview/:id', function(req, res) {
+  if(req.session.user == "Active") {
   function chooseReview(indOne) {
     return indOne.id === parseInt(req.params.id);
   }
@@ -251,7 +252,6 @@ app.get('/editreview/:id', function(req, res) {
   // declare a variable called indOne which is a filter of reviews based on the filtering function above
   var indOne = reviews.filter(chooseReview);
   // pass the filtered JSON data to the page as indOne
-  if(req.session.user == "Active") {
   res.render('editreview', {indOne:indOne});
   console.log("Edit review page shown");
   } else {
