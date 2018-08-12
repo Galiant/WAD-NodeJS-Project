@@ -18,6 +18,7 @@ h1 {
   margin: 2rem 0;
   text-transform: uppercase; }
 
+/* Used code from class with modification*/
 .button {
   background-color: coral;
   border: none;
@@ -57,6 +58,7 @@ input[type=submit] {
   input[type=submit]:hover {
     background-color: #e74c3c; }
 
+/* End Used code from class with modification*/
 /* Index */
 .text {
   width: 100%;
