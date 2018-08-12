@@ -5,20 +5,20 @@ block content
         form.form(method="post")
             .input-box
                 label(for="name") Product Name:
-                input(name="name", type="text", placeholder="Please name the product")
+                input(name="name", type="text", placeholder="Please name the product" required)
             .input-box
                 label(for="brand") Product Brand:
-                input(name="brand", type="text", placeholder="Please name the product brand")
+                input(name="brand", type="text", placeholder="Please name the product brand" required)
             .input-box
                 label(for="category") Product Category:
-                input(name="category", type="text", placeholder="Please choose the category for product")
+                input(name="category", type="text", placeholder="Please choose the category for product" required)
             .input-box
                 label(for="image") Product Image:
-                input(name="image", type="text", placeholder="Please add the product image")
+                input(name="image", type="text", placeholder="Please add the product image" required)
             .input-box
                 label(for="price") Product Price:
-                input(name="price", type="text", placeholder="Please set the price for product")
+                input(name="price", type="text", placeholder="Please set the price for product" required)
             .input-box
                 label(for="offer") Special Offer Price:
-                input(name="offer", type="text", placeholder="Please set the special offer price for product")
+                input(name="offer", type="text", placeholder="Please set the special offer price for product" required)
             button.button(type="submit") Create product

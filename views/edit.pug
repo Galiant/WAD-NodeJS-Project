@@ -6,17 +6,17 @@ block content
             each row in res1
                 .input-box
                     label(for="newname") Product Name:
-                    input(name="newname", type="text", value=row.Name)
+                    input(name="newname", type="text", value=row.Name, required)
                 .input-box
                     label(for="newbrand") Product Brand:
-                    input(name="newbrand", type="text", value=row.Brand)
+                    input(name="newbrand", type="text", value=row.Brand, required)
                 .input-box
                     label(for="newcategory") Product Category:
-                    input(name="newcategory", type="text", value=row.Category)
+                    input(name="newcategory", type="text", value=row.Category, required)
                 .input-box
                     label(for="newimage") Product Image:
-                    input(name="newimage", type="text", value=row.Image)
+                    input(name="newimage", type="text", value=row.Image, required)
                 .input-box
                     label(for="newprice") Product Price:
-                    input(name="newprice", type="text", value=row.Price)
+                    input(name="newprice", type="text", value=row.Price, required)
                 button.button(type="submit") Edit product

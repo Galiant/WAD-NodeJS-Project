@@ -2,7 +2,7 @@ extends layout
 block content
   .form-section
     h2 Hi, Please create an account
-    form.form(action='https://formspree.io/your@email.com', method='POST')
+    form.form(method='POST')
         .input-box
           label(for="name") User name:
           input(name="name", type="text", id="name", placeholder="Your user name" required)
@@ -12,4 +12,4 @@ block content
         .input-box
           label(for="email") Email Address:
           input(name="email", type="text", id="email" placeholder="Your email address" required)
-        button.button(type="submit" id="submit" onclick="formValidation()") Create account
+        button.button(type="submit" id="submit") Create account
