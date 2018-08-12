@@ -5,11 +5,11 @@ block content
     form.form(method="post")
         .input-box
           label(for="name") User name:
-          input(name="name", type="text", placeholder="Your user name" required)
+          input(name="name", type="text", id="name", placeholder="Your user name" required)
         .input-box
           label(for="password") Password:
-          input(name="password", type="password", placeholder="Your password" required)
+          input(name="password", type="password", id="password", placeholder="Your password" required)
         .input-box
           label(for="email") Email Address:
-          input(name="email", type="text", placeholder="Your email address" required)
-        button.button(type="submit") Create account
+          input(name="email", type="text", id="email" placeholder="Your email address" required)
+        button.button(type="submit" id="submit" onclick="formValidation()") Create account

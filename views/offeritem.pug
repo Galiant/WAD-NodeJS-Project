@@ -5,7 +5,7 @@ block content
       .flex-container
         each row in res1
           .card
-            img.pimage(src='/' + row.Image, alt=row.Image)
+            img.product-image(src='/' + row.Image, alt=row.Image)
             h2 #{row.Name}
             p #{row.Brand}
             p Category: #{row.Category}

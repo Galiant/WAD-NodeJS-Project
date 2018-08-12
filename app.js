@@ -1,10 +1,13 @@
 var express = require("express"); // call express to be used by the application
+const helmet = require('helmet'); // call helmet to be used by the application - security
 var app = express();
 const path = require('path');
 const VIEWS = path.join(__dirname, 'views');
 var fs = require('fs'); //file system
 
 app.set('view engine', 'pug'); // allow the application to use jade templating system
+
+app.use(helmet()); // allow he application to use helmet
 
 var session = require('express-session');
 var mysql = require('mysql'); // allow access to SQL
@@ -19,6 +22,8 @@ app.use(express.static("model")); // allow the application to access the models 
 var reviews = require("./model/reviews.json"); // allow the app to access the reviews.json file
 
 app.use(session({ secret: "topsecret" })); // Required to make the session accessable throughout the application
+
+// Express validator
 
 // Connect application with SQL database
 const db = mysql.createConnection({
@@ -94,7 +99,7 @@ app.get('/', function(req, res){
 
 // Function to render the products page
 app.get('/products', function(req, res){
-  let sql = 'SELECT * FROM products;';
+  let sql = 'SELECT * FROM products';
   let query = db.query(sql, (err, res1) => {
     if(err) throw(err);
     res.render('products', {root: VIEWS, res1}); // use the render command so that response object renders a HTML page

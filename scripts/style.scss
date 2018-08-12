@@ -145,6 +145,7 @@ input[type=submit] {
     z-index: 10;
     top: 0px;
     transition: all .6s ease-in-out;
+    overflow: auto;
   
     nav {
         ul {
@@ -244,8 +245,9 @@ input[type=submit] {
             background-color: #ccc;
             display: block;
             margin: 0;
-            max-width: 100%;
-            min-width: 100%;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
         }
         
         h2 {
@@ -278,6 +280,83 @@ input[type=submit] {
     }
 }
 
+@media (max-width: 1160px) {
+    .flex-container {
+        .card {
+            width: 47.5%;
+        }
+    }
+}
+
+@media (max-width: 740px) {
+    .flex-container {
+        .card {
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .flex-container {
+        .card {
+            width: 100%;
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            p {
+                font-size: .9rem;
+            }
+            
+            .product-price {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .menu-tab.active {
+        left: 280px;
+    }
+    
+    .menu-hide {
+        width: 280px;
+        left: -280px;
+    }
+    
+    .flex-container {
+        .card {
+            width: 100%;
+            padding: 5px;
+            
+            h2 {
+                font-size: 1rem;
+            }
+            
+            p {
+                font-size: .9rem;
+            }
+            
+            .product-price {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 360px) {
+    .menu-tab.active {
+        left: 240px;
+    }
+    
+    .menu-hide {
+        width: 240px;
+        left: -240px;
+    }
+}
+
 /* Reviews */
 .reviews-container {
     padding: 30px 40px 80px;
@@ -306,6 +385,16 @@ input[type=submit] {
             p {
                 margin: 0 0 10px;
             }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .reviews-container {
+        padding: 0;
+        
+        .reviews-list .individual-review {
+            width: 100%;
         }
     }
 }
@@ -395,6 +484,8 @@ input[type=submit] {
         }
     }
 }
+
+/* Form Style */
 
 .form-section {
     padding: 30px 0 50px 0;
